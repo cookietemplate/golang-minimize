@@ -94,9 +94,9 @@ if '{{ cookiecutter.use_cobra_cmd }}'.lower() != 'y':
     remove_cobra_files()
 
 # # 5. Remove unused ci choice
-# if '{{ cookiecutter.use_ci}}'.lower() == 'travis':
+# if ' cookiecutter.use_ci'.lower() == 'travis':
 #     remove_circleci_files()
-# elif '{{ cookiecutter.use_ci}}'.lower() == 'circle':
+# elif ' cookiecutter.use_ci'.lower() == 'circle':
 #     remove_file(".travis.yml")
 # else:
 #     remove_file(".travis.yml")
