@@ -77,6 +77,48 @@ def remove_cobra_files():
 #         PROJECT_DIRECTORY, ".circleci"
 #     ))
 
+def remove_api_files():
+    """
+    Removes files needed for viper config utils
+    """
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "api"
+    ))
+
+def remove_web_files():
+    """
+    Removes files needed for viper config utils
+    """
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "web"
+    ))
+
+def remove_extra_files():
+    """
+    Removes files needed for viper config utils
+    """
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "assets"
+    ))
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "docs"
+    ))
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "examples"
+    ))
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "githooks"
+    ))
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "third_party"
+    ))
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "tools"
+    ))
+    shutil.rmtree(os.path.join(
+        PROJECT_DIRECTORY, "website"
+    ))
+
 # # 1. Remove Dockerfiles if docker is not going to be used
 # if '{{ cookiecutter.use_docker }}'.lower() != 'y':
 #     remove_docker_files()
@@ -107,3 +149,14 @@ if '{{ cookiecutter.use_git }}'.lower() == 'y':
     init_git()
 else:
     remove_file(".gitignore")
+
+# 7. Remove unused extra files
+if '{{ cookiecutter.extra_folders }}'.lower() != 'n':
+    remove_extra_files()
+
+# 8. Remove unused api files
+if '{{ cookiecutter.project_type }}'.lower()!= 'api':
+    remove_web_files()
+elif '{{ cookiecutter.project_type }}'.lower()!= 'cli':
+    remove_api_files()
+    remove_web_files()

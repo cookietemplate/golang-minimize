@@ -8,6 +8,13 @@
     "version": "0.1.0",
     "project_short_description": "",
 
+    "project_type": [
+        "api",
+        "cli",
+        "web"
+    ],
+    "extra_folders": "n",
+
     "ci": [
         "github",
         "gitlab"
