@@ -11,7 +11,7 @@ VERSION := $(shell grep "const Version " version/version.go | sed -E 's/.*"(.+)"
 GIT_COMMIT=$(shell git rev-parse HEAD)
 GIT_DIRTY=$(shell test -n "`git status --porcelain`" && echo "+CHANGES" || true)
 BUILD_DATE=$(shell date '+%Y-%m-%d-%H:%M:%S')
-IMAGE_NAME := "{{cookiecutter.docker_hub_username}}/{{cookiecutter.project_slug}}"
+# IMAGE_NAME := "{{cookiecutter.docker_hub_username}}/{{cookiecutter.project_slug}}"
 
 default: test
 
@@ -36,28 +36,28 @@ build:
 
 get-deps:
 	dep ensure
-{% if cookiecutter.use_docker == "y" %}
-build-alpine:
-	@echo "building ${BIN_NAME} ${VERSION}"
-	@echo "GOPATH=${GOPATH}"
-	go build -ldflags '-w -linkmode external -extldflags "-static" -X github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/version.GitCommit=${GIT_COMMIT}${GIT_DIRTY} -X github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/version.BuildDate=${BUILD_DATE}' -o bin/${BIN_NAME}
+# {% if cookiecutter.use_docker == "y" %}
+# build-alpine:
+# 	@echo "building ${BIN_NAME} ${VERSION}"
+# 	@echo "GOPATH=${GOPATH}"
+# 	go build -ldflags '-w -linkmode external -extldflags "-static" -X github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/version.GitCommit=${GIT_COMMIT}${GIT_DIRTY} -X github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/version.BuildDate=${BUILD_DATE}' -o bin/${BIN_NAME}
 
-package:
-	@echo "building image ${BIN_NAME} ${VERSION} $(GIT_COMMIT)"
-	docker build --build-arg VERSION=${VERSION} --build-arg GIT_COMMIT=$(GIT_COMMIT) -t $(IMAGE_NAME):local .
+# package:
+# 	@echo "building image ${BIN_NAME} ${VERSION} $(GIT_COMMIT)"
+# 	docker build --build-arg VERSION=${VERSION} --build-arg GIT_COMMIT=$(GIT_COMMIT) -t $(IMAGE_NAME):local .
 
-tag: 
-	@echo "Tagging: latest ${VERSION} $(GIT_COMMIT)"
-	docker tag $(IMAGE_NAME):local $(IMAGE_NAME):$(GIT_COMMIT)
-	docker tag $(IMAGE_NAME):local $(IMAGE_NAME):${VERSION}
-	docker tag $(IMAGE_NAME):local $(IMAGE_NAME):latest
+# tag: 
+# 	@echo "Tagging: latest ${VERSION} $(GIT_COMMIT)"
+# 	docker tag $(IMAGE_NAME):local $(IMAGE_NAME):$(GIT_COMMIT)
+# 	docker tag $(IMAGE_NAME):local $(IMAGE_NAME):${VERSION}
+# 	docker tag $(IMAGE_NAME):local $(IMAGE_NAME):latest
 
-push: tag
-	@echo "Pushing docker image to registry: latest ${VERSION} $(GIT_COMMIT)"
-	docker push $(IMAGE_NAME):$(GIT_COMMIT)
-	docker push $(IMAGE_NAME):${VERSION}
-	docker push $(IMAGE_NAME):latest
-{% endif %}
+# push: tag
+# 	@echo "Pushing docker image to registry: latest ${VERSION} $(GIT_COMMIT)"
+# 	docker push $(IMAGE_NAME):$(GIT_COMMIT)
+# 	docker push $(IMAGE_NAME):${VERSION}
+# 	docker push $(IMAGE_NAME):latest
+# {% endif %}
 clean:
 	@test ! -e bin/${BIN_NAME} || rm bin/${BIN_NAME}
 
