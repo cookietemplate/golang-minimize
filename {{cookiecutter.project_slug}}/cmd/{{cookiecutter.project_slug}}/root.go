@@ -1,4 +1,4 @@
-package cmd
+package {{cookiecutter.project_slug}}
 
 import (
 	"fmt"
