@@ -155,8 +155,8 @@ if '{{ cookiecutter.extra_folders }}'.lower() != 'y':
     remove_extra_files()
 
 # 8. Remove unused api files
-if '{{ cookiecutter.project_type }}'.lower()!= 'api':
+if '{{ cookiecutter.project_type }}'.lower()== 'api':
     remove_web_files()
-elif '{{ cookiecutter.project_type }}'.lower()!= 'cli':
+elif '{{ cookiecutter.project_type }}'.lower()== 'cli':
     remove_api_files()
     remove_web_files()
