@@ -25,8 +25,8 @@
     "use_viper_config": "y",
     "use_cobra_cmd": "y",
     "logger_type":[
-        "logrus",
         "zap",
+        "logrus",
         "none"
     ]
 }

@@ -151,7 +151,7 @@ else:
     remove_file(".gitignore")
 
 # 7. Remove unused extra files
-if '{{ cookiecutter.extra_folders }}'.lower() != 'n':
+if '{{ cookiecutter.extra_folders }}'.lower() != 'y':
     remove_extra_files()
 
 # 8. Remove unused api files
