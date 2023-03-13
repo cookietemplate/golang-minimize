@@ -1,0 +1,25 @@
+{
+    "project_name": "Untitled Project",
+    "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+
+    "full_name": "Minato",
+    "email": "82735346+minato-ellie@users.noreply.github.com",
+    "github_username": "minato-ellie",
+    "version": "0.1.0",
+    "project_short_description": "",
+
+    "ci": [
+        "github",
+        "gitlab"
+    ],
+
+    "use_docker": "y",
+    "use_git": "y",
+    "use_viper_config": "y",
+    "use_cobra_cmd": "y",
+    "logger_type":[
+        "logrus",
+        "zap",
+        "none"
+    ]
+}
