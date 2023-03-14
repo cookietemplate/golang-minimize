@@ -1,17 +1,10 @@
 package main
 
 import (
-	{% if cookiecutter.use_cobra_cmd == "n" %}"flag"
 	"fmt"
-	"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/version"{% endif %}
-	{% if cookiecutter.use_cobra_cmd == "y" %}"github.com/{{cookiecutter.github_username}}/{{cookiecutter.project_slug}}/cmd"{% endif %}
 )
 
 func main() {
-
-    {% if cookiecutter.use_cobra_cmd == "y" %}
-    cmd.Execute()
-	{% else %}
 	versionFlag := flag.Bool("version", false, "Version")
 	flag.Parse()
 

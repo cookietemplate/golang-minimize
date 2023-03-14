@@ -8,25 +8,10 @@
     "version": "0.1.0",
     "project_short_description": "",
 
-    "project_type": [
-        "api",
-        "cli",
-        "web"
-    ],
-    "extra_folders": "n",
-
     "ci": [
         "github",
         "gitlab"
     ],
 
-    "use_docker": "y",
-    "use_git": "y",
-    "use_viper_config": "y",
-    "use_cobra_cmd": "y",
-    "logger_type":[
-        "zap",
-        "logrus",
-        "none"
-    ]
+    "use_git": "y"
 }
